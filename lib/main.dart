@@ -1,10 +1,8 @@
-// ignore_for_file: prefer_const_constructors, unused_import
+
 
 import 'package:flutter/material.dart';
-import 'package:flutter_food_ui/screens/cart.dart';
-import 'package:flutter_food_ui/screens/details.dart';
-import 'package:flutter_food_ui/screens/homepage.dart';
 import 'package:flutter_food_ui/screens/splashscreen.dart';
+import 'package:get/get.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +13,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Food',
       home: SplashScreen(),

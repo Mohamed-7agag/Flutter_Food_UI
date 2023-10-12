@@ -1,63 +1,101 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last
+// ignore_for_file: sort_child_properties_last, unnecessary_string_interpolations, sized_box_for_whitespace
 
 import 'package:flutter/material.dart';
-import 'package:flutter_food_ui/screens/homepage.dart';
+import 'package:flutter_food_ui/dart_detail.dart';
+import 'package:flutter_food_ui/item.dart';
+import 'package:get/get.dart';
 
 class FoodDetail extends StatefulWidget {
-  const FoodDetail({super.key});
+  final String imageUrl;
+  final int price;
+  final String name;
+  final Item item;
+  const FoodDetail(
+      {super.key,
+      required this.imageUrl,
+      required this.price,
+      required this.name,
+      required this.item});
 
   @override
   State<FoodDetail> createState() => _FoodDetailState();
 }
 
 class _FoodDetailState extends State<FoodDetail> {
+  Cart controller = Get.find<Cart>();
+  List<Item> ons = [
+    Item(
+      name: " Cheese",
+      price: 7,
+      imageURL: "assets/images/cheese-3.png",
+      count: 0,
+    ),
+    Item(
+      name: " Lettuce",
+      price: 5,
+      imageURL: "assets/images/green-lettuce.png",
+      count: 0,
+    ),
+    Item(
+      name: " Pepsi",
+      price: 10,
+      imageURL: "assets/images/pepsi-12.png",
+      count: 0,
+    ),
+    Item(
+      name: " Fries",
+      price: 8,
+      imageURL: "assets/images/fries-18.png",
+      count: 0,
+    ),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        color: Color(0xff462b9c),
+        color: const Color(0xff462b9c),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 50,
             ),
             Container(
-              padding: EdgeInsets.only(left: 15),
+              padding: const EdgeInsets.only(left: 15),
               alignment: Alignment.centerLeft,
               child: IconButton(
                 onPressed: () {
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (context) => HomepageScreen(),
-                  ));
+                  Get.back();
                 },
-                icon: Icon(
+                icon: const Icon(
                   Icons.arrow_back_ios,
                   size: 30,
                   color: Colors.white,
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             Image.asset(
-              "assets/images/burger-3.png",
+              widget.imageUrl,
               width: 270,
             ),
-            SizedBox(
+            const SizedBox(
               height: 55,
             ),
             Container(
-              padding: EdgeInsets.all(25),
+              padding: const EdgeInsets.all(25),
               width: double.infinity,
               height: 440,
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius:
-                      BorderRadius.only(topLeft: Radius.circular(50))),
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(50),
+                ),
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -65,14 +103,14 @@ class _FoodDetailState extends State<FoodDetail> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        padding: EdgeInsets.symmetric(horizontal: 7),
+                        padding: const EdgeInsets.symmetric(horizontal: 7),
                         width: 105,
                         height: 48,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(50),
-                          color: Color(0xff462b9c),
+                          color: const Color(0xff462b9c),
                         ),
-                        child: Row(
+                        child: const Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Icon(
@@ -95,8 +133,8 @@ class _FoodDetailState extends State<FoodDetail> {
                         ),
                       ),
                       Text(
-                        " 20\$",
-                        style: TextStyle(
+                        " ${widget.price}\$",
+                        style: const TextStyle(
                             fontFamily: 'myfont',
                             fontSize: 28,
                             fontWeight: FontWeight.bold,
@@ -104,48 +142,17 @@ class _FoodDetailState extends State<FoodDetail> {
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        " Beaf Burger",
-                        style: TextStyle(
-                            fontFamily: 'myfont',
-                            fontSize: 22,
-                            fontWeight: FontWeight.w500),
-                      ),
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.add_circle_outline_rounded,
-                            color: Color(0xff462b9c),
-                          ),
-                          SizedBox(
-                            width: 12,
-                          ),
-                          Text(
-                            "1",
-                            style: TextStyle(
-                              fontFamily: 'myfont',
-                              fontSize: 22,
-                              color: Color(0xff462b9c),
-                            ),
-                          ),
-                          SizedBox(
-                            width: 12,
-                          ),
-                          Icon(
-                            Icons.remove_circle_outline_rounded,
-                            color: Color(0xff462b9c),
-                          ),
-                        ],
-                      ),
-                    ],
+                  Text(
+                    "${widget.name}",
+                    style: const TextStyle(
+                        fontFamily: 'myfont',
+                        fontSize: 22,
+                        fontWeight: FontWeight.w500),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Text(
@@ -155,28 +162,28 @@ class _FoodDetailState extends State<FoodDetail> {
                         fontSize: 16,
                         color: Colors.grey[600]),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
-                  Text(
+                  const Text(
                     "Add Ons",
                     style: TextStyle(
                       fontFamily: 'myfont',
                       fontSize: 22,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                          padding: EdgeInsets.only(top: 12),
+                          padding: const EdgeInsets.only(top: 12),
                           width: 85,
-                          height: 85,
+                          height: 88,
                           decoration: BoxDecoration(
-                              color: Color.fromARGB(186, 224, 224, 224),
+                              color: const Color.fromARGB(186, 224, 224, 224),
                               borderRadius: BorderRadius.circular(18)),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -189,19 +196,26 @@ class _FoodDetailState extends State<FoodDetail> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text(""),
+                                  const Text(""),
                                   Container(
-                                    width: 28,
-                                    height: 25,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.only(
-                                            topLeft: Radius.circular(20),
-                                            bottomRight: Radius.circular(18)),
-                                        color: Colors.green[600]),
-                                    child: Icon(
-                                      Icons.add,
-                                      color: Colors.white,
-                                      size: 18,
+                                    width: 30,
+                                    height: 28,
+                                    child: GetBuilder<Cart>(
+                                      builder: (controller) => IconButton(
+                                        onPressed: () {
+                                          if (!controller.foodNames
+                                              .contains(ons[0].name)) {
+                                            controller.add(ons[0]);
+                                          } else {
+                                            controller.plus(ons[0]);
+                                          }
+                                        },
+                                        icon: Icon(
+                                          Icons.add_circle,
+                                          color: Colors.green[600],
+                                          size: 27,
+                                        ),
+                                      ),
                                     ),
                                   )
                                 ],
@@ -209,36 +223,43 @@ class _FoodDetailState extends State<FoodDetail> {
                             ],
                           )),
                       Container(
-                          padding: EdgeInsets.only(top: 10),
+                          padding: const EdgeInsets.only(top: 10),
                           width: 85,
-                          height: 85,
+                          height: 88,
                           decoration: BoxDecoration(
-                              color: Color.fromARGB(186, 224, 224, 224),
+                              color: const Color.fromARGB(186, 224, 224, 224),
                               borderRadius: BorderRadius.circular(18)),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Image.asset(
                                 "assets/images/green-lettuce.png",
-                                width: 63,
+                                width: 65,
                               ),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text(""),
+                                  const Text(""),
                                   Container(
-                                    width: 28,
-                                    height: 25,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.only(
-                                            topLeft: Radius.circular(20),
-                                            bottomRight: Radius.circular(18)),
-                                        color: Colors.green[600]),
-                                    child: Icon(
-                                      Icons.add,
-                                      color: Colors.white,
-                                      size: 18,
+                                    width: 30,
+                                    height: 28,
+                                    child: GetBuilder<Cart>(
+                                      builder: (controller) => IconButton(
+                                        onPressed: () {
+                                          if (!controller.foodNames
+                                              .contains(ons[1].name)) {
+                                            controller.add(ons[1]);
+                                          } else {
+                                            controller.plus(ons[2]);
+                                          }
+                                        },
+                                        icon: Icon(
+                                          Icons.add_circle,
+                                          color: Colors.green[600],
+                                          size: 27,
+                                        ),
+                                      ),
                                     ),
                                   )
                                 ],
@@ -246,11 +267,11 @@ class _FoodDetailState extends State<FoodDetail> {
                             ],
                           )),
                       Container(
-                          padding: EdgeInsets.only(top: 10),
+                          padding: const EdgeInsets.only(top: 10),
                           width: 85,
-                          height: 85,
+                          height: 88,
                           decoration: BoxDecoration(
-                              color: Color.fromARGB(186, 224, 224, 224),
+                              color: const Color.fromARGB(186, 224, 224, 224),
                               borderRadius: BorderRadius.circular(18)),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -263,19 +284,26 @@ class _FoodDetailState extends State<FoodDetail> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text(""),
+                                  const Text(""),
                                   Container(
-                                    width: 28,
-                                    height: 25,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.only(
-                                            topLeft: Radius.circular(20),
-                                            bottomRight: Radius.circular(18)),
-                                        color: Colors.green[600]),
-                                    child: Icon(
-                                      Icons.add,
-                                      color: Colors.white,
-                                      size: 18,
+                                    width: 30,
+                                    height: 28,
+                                    child: GetBuilder<Cart>(
+                                      builder: (controller) => IconButton(
+                                        onPressed: () {
+                                          if (!controller.foodNames
+                                              .contains(ons[2].name)) {
+                                            controller.add(ons[2]);
+                                          } else {
+                                            controller.plus(ons[2]);
+                                          }
+                                        },
+                                        icon: Icon(
+                                          Icons.add_circle,
+                                          color: Colors.green[600],
+                                          size: 27,
+                                        ),
+                                      ),
                                     ),
                                   )
                                 ],
@@ -283,50 +311,63 @@ class _FoodDetailState extends State<FoodDetail> {
                             ],
                           )),
                       Container(
-                          padding: EdgeInsets.only(top: 10),
+                          padding: const EdgeInsets.only(top: 10),
                           width: 85,
-                          height: 85,
+                          height: 88,
                           decoration: BoxDecoration(
-                              color: Color.fromARGB(186, 224, 224, 224),
+                              color: const Color.fromARGB(186, 224, 224, 224),
                               borderRadius: BorderRadius.circular(18)),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Image.asset(
                                 "assets/images/fries-18.png",
-                                width: 75,
+                                width: 78,
                               ),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text(""),
+                                  const Text(""),
                                   Container(
-                                    width: 28,
-                                    height: 25,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.only(
-                                            topLeft: Radius.circular(20),
-                                            bottomRight: Radius.circular(18)),
-                                        color: Colors.green[600]),
-                                    child: Icon(
-                                      Icons.add,
-                                      color: Colors.white,
-                                      size: 18,
+                                    width: 30,
+                                    height: 28,
+                                    child: GetBuilder<Cart>(
+                                      builder: (controller) => IconButton(
+                                        onPressed: () {
+                                          if (!controller.foodNames
+                                              .contains(ons[3].name)) {
+                                            controller.add(ons[3]);
+                                          } else {
+                                            controller.plus(ons[3]);
+                                          }
+                                        },
+                                        icon: Icon(
+                                          Icons.add_circle,
+                                          color: Colors.green[600],
+                                          size: 27,
+                                        ),
+                                      ),
                                     ),
-                                  )
+                                  ),
                                 ],
                               )
                             ],
                           )),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 25,
                   ),
                   ElevatedButton(
-                    onPressed: () {},
-                    child: Text(
+                    onPressed: () {
+                      if (!controller.foodNames.contains(widget.item.name)) {
+                        controller.add(widget.item);
+                      } else {
+                        controller.plus(widget.item);
+                      }
+                    },
+                    child: const Text(
                       "Add To Cart",
                       style: TextStyle(fontFamily: 'myfont', fontSize: 23),
                     ),
@@ -336,10 +377,10 @@ class _FoodDetailState extends State<FoodDetail> {
                               borderRadius: BorderRadius.circular(50)),
                         ),
                         padding: MaterialStateProperty.all(
-                          EdgeInsets.symmetric(vertical: 11, horizontal: 111),
+                          const EdgeInsets.symmetric(vertical: 11, horizontal: 111),
                         ),
                         backgroundColor:
-                            MaterialStateProperty.all(Color(0xff462b9c))),
+                            MaterialStateProperty.all(const Color(0xff462b9c))),
                   ),
                 ],
               ),

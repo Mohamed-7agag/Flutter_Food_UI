@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last
+// ignore_for_file: sort_child_properties_last
 
 import 'package:flutter/material.dart';
 import 'package:flutter_food_ui/screens/homepage.dart';
@@ -15,10 +15,10 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.symmetric(vertical: 35),
+        padding: const EdgeInsets.symmetric(vertical: 35),
         width: double.infinity,
         height: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
@@ -31,7 +31,7 @@ class _SplashScreenState extends State<SplashScreen> {
               backgroundColor: Colors.white,
               child: Image.asset("assets/images/food-plate-2.png"),
             ),
-            Text(
+            const Text(
               "Enjoy\nYour Food",
               style: TextStyle(
                   fontSize: 44,
@@ -43,10 +43,10 @@ class _SplashScreenState extends State<SplashScreen> {
             ElevatedButton(
               onPressed: () {
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  builder: (context) => HomepageScreen(),
+                  builder: (context) => const HomepageScreen(),
                 ));
               },
-              child: Text(
+              child: const Text(
                 "Get Started",
                 style: TextStyle(
                     fontFamily: "myfont",
@@ -57,7 +57,7 @@ class _SplashScreenState extends State<SplashScreen> {
               style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(Colors.white),
                   padding: MaterialStateProperty.all(
-                      EdgeInsets.symmetric(vertical: 11, horizontal: 60)),
+                      const EdgeInsets.symmetric(vertical: 11, horizontal: 60)),
                   shape: MaterialStateProperty.all(RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(50)))),
             ),

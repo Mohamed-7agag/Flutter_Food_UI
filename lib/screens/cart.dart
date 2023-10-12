@@ -1,7 +1,10 @@
-// ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, prefer_const_literals_to_create_immutables, sort_child_properties_last
+// ignore_for_file: sized_box_for_whitespace, sort_child_properties_last
 
 import 'package:flutter/material.dart';
+import 'package:flutter_food_ui/dart_detail.dart';
+import 'package:flutter_food_ui/screens/details.dart';
 import 'package:flutter_food_ui/screens/homepage.dart';
+import 'package:get/get.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
@@ -11,241 +14,193 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
+  Cart controller = Get.find<Cart>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomAppBar(
-        child: Container(
-          height: 55,
-          margin: EdgeInsets.only(left: 20, right: 20),
-          child: Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              IconButton(onPressed: () {
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: (context) => HomepageScreen(),
-                      ));
-              }, icon: Icon(Icons.home)),
-              IconButton(onPressed: () {}, icon: Icon(Icons.search)),
-              IconButton(
-                  onPressed: () {}, icon: Icon(Icons.shopping_cart_rounded,color: Color(0xff462b9c),)),
-              IconButton(
-                  onPressed: () {}, icon: Icon(Icons.person_outline_outlined)),
-            ],
-          ),
-        ),
-      ),
       body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         width: double.infinity,
         height: double.infinity,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 60,
             ),
-            Text(
-              "Cart Items",
-              style: TextStyle(
-                  fontFamily: 'myfont',
-                  fontSize: 27,
-                  fontWeight: FontWeight.w500),
+            GetBuilder<Cart>(
+              init: Cart(),
+              builder: (controller) => Text(
+                "${controller.cartItemsLength} Cart Items",
+                style: const TextStyle(
+                    fontFamily: 'myfont',
+                    fontSize: 27,
+                    fontWeight: FontWeight.w500),
+              ),
             ),
-            SizedBox(
-              height: 30,
+            const SizedBox(
+              height: 15,
             ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  width: 100,
-                  height: 130,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(18),
-                    color: Color.fromARGB(186, 224, 224, 224),
-                  ),
-                  child: Image.asset("assets/images/soupy-noodles.png"),
-                ),
-                SizedBox(
-                  width: 13,
-                ),
-                Container(
-                  width: 150,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Cheese Bread",
-                        style: TextStyle(
-                            fontFamily: 'myfont',
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500),
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        " 37\$",
-                        style: TextStyle(
-                            fontFamily: 'myfont',
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600,
-                            color: Color.fromARGB(255, 216, 163, 2)),
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Row(
+            Container(
+              width: double.infinity,
+              height: 270,
+              child: GetBuilder<Cart>(
+                builder: (controller) => ListView.builder(
+                  itemCount: controller.cartItemsLength,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Container(
+                      margin: const EdgeInsets.only(bottom: 10),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Icon(
-                            Icons.add_circle_outline_rounded,
-                            color: Color(0xff462b9c),
-                          ),
-                          SizedBox(
-                            width: 12,
-                          ),
-                          Text(
-                            "1",
-                            style: TextStyle(
-                              fontFamily: 'myfont',
-                              fontSize: 22,
-                              color: Color(0xff462b9c),
+                          InkWell(
+                            onTap: () {
+                              Get.to(() => FoodDetail(
+                                  imageUrl:
+                                      controller.cartitems[index].imageURL,
+                                  price: controller.cartitems[index].price,
+                                  name: controller.cartitems[index].name,
+                                  item: controller.cartitems[index]));
+                            },
+                            child: Container(
+                              width: 100,
+                              height: 130,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(18),
+                                color: const Color.fromARGB(186, 224, 224, 224),
+                              ),
+                              child: Center(
+                                child: Container(
+                                  width: 88,
+                                  height: 100,
+                                  child: Image.asset(
+                                    controller.cartitems[index].imageURL,
+                                    fit: BoxFit.contain,
+                                    width: 60,
+                                    height: 60,
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
-                          SizedBox(
-                            width: 12,
+                          const SizedBox(
+                            width: 13,
                           ),
-                          Icon(
-                            Icons.remove_circle_outline_rounded,
-                            color: Color(0xff462b9c),
+                          Container(
+                            width: 150,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "${controller.cartitems[index].name}",
+                                  style: const TextStyle(
+                                      fontFamily: 'myfont',
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  " ${controller.cartitems[index].price}\$",
+                                  style: const TextStyle(
+                                      fontFamily: 'myfont',
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w600,
+                                      color: Color.fromARGB(255, 216, 163, 2)),
+                                ),
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                Row(
+                                  children: [
+                                    IconButton(
+                                      onPressed: () {
+                                        controller
+                                            .plus(controller.cartitems[index]);
+                                      },
+                                      icon: const Icon(
+                                        Icons.add_circle_outline_rounded,
+                                        color: Color(0xff462b9c),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    GetBuilder<Cart>(
+                                      builder: (controller) => Text(
+                                        "${controller.cartitems[index].count}",
+                                        style: const TextStyle(
+                                          fontFamily: 'myfont',
+                                          fontSize: 22,
+                                          color: Color(0xff462b9c),
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    IconButton(
+                                      onPressed: () {
+                                        controller
+                                            .minus(controller.cartitems[index]);
+                                      },
+                                      icon: const Icon(
+                                        Icons.remove_circle_outline_rounded,
+                                        color: Color(0xff462b9c),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 60,
+                          ),
+                          IconButton(
+                            onPressed: () {
+                              controller.remove(controller.cartitems[index]);
+                            },
+                            icon: Icon(
+                              Icons.delete_rounded,
+                              size: 28,
+                              color: Colors.red[700],
+                            ),
                           ),
                         ],
                       ),
-                    ],
-                  ),
+                    );
+                  },
                 ),
-                SizedBox(
-                  width: 65,
-                ),
-                Icon(
-                  Icons.delete_rounded,
-                  size: 28,
-                  color: Colors.red[700],
-                )
-              ],
+              ),
             ),
-            SizedBox(
-              height: 20,
-            ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 8),
-                  width: 100,
-                  height: 130,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(18),
-                    color: Color.fromARGB(186, 224, 224, 224),
-                  ),
-                  child: Image.asset("assets/images/burger-3.png"),
-                ),
-                SizedBox(
-                  width: 13,
-                ),
-                Container(
-                  width: 150,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Beef Burger",
-                        style: TextStyle(
-                            fontFamily: 'myfont',
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500),
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        " 20\$",
-                        style: TextStyle(
-                            fontFamily: 'myfont',
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600,
-                            color: Color.fromARGB(255, 216, 163, 2)),
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.add_circle_outline_rounded,
-                            color: Color(0xff462b9c),
-                          ),
-                          SizedBox(
-                            width: 12,
-                          ),
-                          Text(
-                            "1",
-                            style: TextStyle(
-                              fontFamily: 'myfont',
-                              fontSize: 22,
-                              color: Color(0xff462b9c),
-                            ),
-                          ),
-                          SizedBox(
-                            width: 12,
-                          ),
-                          Icon(
-                            Icons.remove_circle_outline_rounded,
-                            color: Color(0xff462b9c),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  width: 65,
-                ),
-                Icon(
-                  Icons.delete_rounded,
-                  size: 28,
-                  color: Colors.red[700],
-                )
-              ],
-            ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
-            Text(
+            const Text(
               "Order Instructions",
               style: TextStyle(
                 fontFamily: 'myfont',
                 fontSize: 18,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 6,
             ),
             TextFormField(
               decoration: InputDecoration(
-                  contentPadding: EdgeInsets.symmetric(vertical: 35),
+                  contentPadding: const EdgeInsets.symmetric(vertical: 35),
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20))),
             ),
-            SizedBox(
+            const SizedBox(
               height: 25,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
+                const Text(
                   "Total:",
                   style: TextStyle(
                     fontFamily: 'myfont',
@@ -253,22 +208,24 @@ class _CartScreenState extends State<CartScreen> {
                     fontSize: 25,
                   ),
                 ),
-                Text(
-                  " 57\$",
-                  style: TextStyle(
-                      fontFamily: 'myfont',
-                      fontSize: 24,
-                      fontWeight: FontWeight.w600,
-                      color: Color.fromARGB(255, 216, 163, 2)),
-                ),
+                GetBuilder<Cart>(
+                  builder: (controller) => Text(
+                    " ${controller.totalprice}\$",
+                    style: const TextStyle(
+                        fontFamily: 'myfont',
+                        fontSize: 24,
+                        fontWeight: FontWeight.w600,
+                        color: Color.fromARGB(255, 216, 163, 2)),
+                  ),
+                )
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 25,
             ),
             ElevatedButton(
               onPressed: () {},
-              child: Text(
+              child: const Text(
                 "CheckOut",
                 style: TextStyle(fontFamily: 'myfont', fontSize: 23),
               ),
@@ -278,12 +235,12 @@ class _CartScreenState extends State<CartScreen> {
                         borderRadius: BorderRadius.circular(50)),
                   ),
                   padding: MaterialStateProperty.all(
-                    EdgeInsets.symmetric(vertical: 11, horizontal: 128),
+                    const EdgeInsets.symmetric(vertical: 11, horizontal: 128),
                   ),
                   backgroundColor:
-                      MaterialStateProperty.all(Color(0xff462b9c))),
+                      MaterialStateProperty.all(const Color(0xff462b9c))),
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             Row(
@@ -292,10 +249,10 @@ class _CartScreenState extends State<CartScreen> {
                 InkWell(
                   onTap: () {
                     Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (context) => HomepageScreen(),
+                      builder: (context) => const HomepageScreen(),
                     ));
                   },
-                  child: Text(
+                  child: const Text(
                     "Back To Menu",
                     style: TextStyle(
                         fontFamily: 'myfont',
