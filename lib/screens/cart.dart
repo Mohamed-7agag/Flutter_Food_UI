@@ -43,7 +43,7 @@ class _CartScreenState extends State<CartScreen> {
             ),
             Container(
               width: double.infinity,
-              height: 270,
+              constraints: const BoxConstraints(maxHeight: 290),
               child: GetBuilder<Cart>(
                 builder: (controller) => ListView.builder(
                   itemCount: controller.cartItemsLength,
@@ -76,15 +76,13 @@ class _CartScreenState extends State<CartScreen> {
                                   child: Image.asset(
                                     controller.cartitems[index].imageURL,
                                     fit: BoxFit.contain,
-                                    width: 60,
-                                    height: 60,
                                   ),
                                 ),
                               ),
                             ),
                           ),
                           const SizedBox(
-                            width: 13,
+                            width: 8,
                           ),
                           Container(
                             width: 150,
@@ -92,7 +90,7 @@ class _CartScreenState extends State<CartScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "${controller.cartitems[index].name}",
+                                  " ${controller.cartitems[index].name}",
                                   style: const TextStyle(
                                       fontFamily: 'myfont',
                                       fontSize: 18,
@@ -102,7 +100,7 @@ class _CartScreenState extends State<CartScreen> {
                                   height: 5,
                                 ),
                                 Text(
-                                  " ${controller.cartitems[index].price}\$",
+                                  "  ${controller.cartitems[index].price}\$",
                                   style: const TextStyle(
                                       fontFamily: 'myfont',
                                       fontSize: 18,
@@ -110,7 +108,7 @@ class _CartScreenState extends State<CartScreen> {
                                       color: Color.fromARGB(255, 216, 163, 2)),
                                 ),
                                 const SizedBox(
-                                  height: 5,
+                                  height: 3,
                                 ),
                                 Row(
                                   children: [
@@ -125,7 +123,7 @@ class _CartScreenState extends State<CartScreen> {
                                       ),
                                     ),
                                     const SizedBox(
-                                      width: 10,
+                                      width: 7,
                                     ),
                                     GetBuilder<Cart>(
                                       builder: (controller) => Text(
@@ -138,7 +136,7 @@ class _CartScreenState extends State<CartScreen> {
                                       ),
                                     ),
                                     const SizedBox(
-                                      width: 10,
+                                      width: 7,
                                     ),
                                     IconButton(
                                       onPressed: () {
@@ -156,14 +154,15 @@ class _CartScreenState extends State<CartScreen> {
                             ),
                           ),
                           const SizedBox(
-                            width: 60,
+                            width: 50,
                           ),
                           IconButton(
                             onPressed: () {
-                              controller.remove(controller.cartitems[index]);
+                              controller
+                                  .remove(controller.cartitems[index]);
                             },
                             icon: Icon(
-                              Icons.delete_rounded,
+                              Icons.delete_forever_rounded,
                               size: 28,
                               color: Colors.red[700],
                             ),
@@ -176,7 +175,7 @@ class _CartScreenState extends State<CartScreen> {
               ),
             ),
             const SizedBox(
-              height: 30,
+              height: 25,
             ),
             const Text(
               "Order Instructions",
@@ -223,22 +222,21 @@ class _CartScreenState extends State<CartScreen> {
             const SizedBox(
               height: 25,
             ),
-            ElevatedButton(
-              onPressed: () {},
+            Container(
+              alignment: Alignment.center,
+              padding: const EdgeInsets.symmetric(vertical: 10),
+              width: MediaQuery.of(context).size.width,
               child: const Text(
                 "CheckOut",
-                style: TextStyle(fontFamily: 'myfont', fontSize: 23),
+                style: TextStyle(
+                    fontFamily: 'myfont',
+                    fontWeight: FontWeight.w500,
+                    fontSize: 23,
+                    color: Colors.white),
               ),
-              style: ButtonStyle(
-                  shape: MaterialStateProperty.all(
-                    RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(50)),
-                  ),
-                  padding: MaterialStateProperty.all(
-                    const EdgeInsets.symmetric(vertical: 11, horizontal: 128),
-                  ),
-                  backgroundColor:
-                      MaterialStateProperty.all(const Color(0xff462b9c))),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(50),
+                  color: const Color(0xff462b9c)),
             ),
             const SizedBox(
               height: 15,

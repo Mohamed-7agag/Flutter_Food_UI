@@ -359,29 +359,31 @@ class _FoodDetailState extends State<FoodDetail> {
                   const SizedBox(
                     height: 25,
                   ),
-                  ElevatedButton(
-                    onPressed: () {
+                  InkWell(
+                    onTap: () {
                       if (!controller.foodNames.contains(widget.item.name)) {
                         controller.add(widget.item);
                       } else {
                         controller.plus(widget.item);
                       }
                     },
-                    child: const Text(
-                      "Add To Cart",
-                      style: TextStyle(fontFamily: 'myfont', fontSize: 23),
+                    child: Container(
+                      alignment: Alignment.center,
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      width: MediaQuery.of(context).size.width,
+                      child: const Text(
+                        "Add To Cart",
+                        style: TextStyle(
+                            fontFamily: 'myfont',
+                            fontWeight: FontWeight.w500,
+                            fontSize: 23,
+                            color: Colors.white),
+                      ),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50),
+                          color: const Color(0xff462b9c)),
                     ),
-                    style: ButtonStyle(
-                        shape: MaterialStateProperty.all(
-                          RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(50)),
-                        ),
-                        padding: MaterialStateProperty.all(
-                          const EdgeInsets.symmetric(vertical: 11, horizontal: 111),
-                        ),
-                        backgroundColor:
-                            MaterialStateProperty.all(const Color(0xff462b9c))),
-                  ),
+                  )
                 ],
               ),
             ),
