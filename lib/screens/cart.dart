@@ -93,7 +93,7 @@ class _CartScreenState extends State<CartScreen> {
                                   " ${controller.cartitems[index].name}",
                                   style: const TextStyle(
                                       fontFamily: 'myfont',
-                                      fontSize: 18,
+                                      fontSize: 16,
                                       fontWeight: FontWeight.w500),
                                 ),
                                 const SizedBox(
@@ -103,7 +103,7 @@ class _CartScreenState extends State<CartScreen> {
                                   "  ${controller.cartitems[index].price}\$",
                                   style: const TextStyle(
                                       fontFamily: 'myfont',
-                                      fontSize: 18,
+                                      fontSize: 16,
                                       fontWeight: FontWeight.w600,
                                       color: Color.fromARGB(255, 216, 163, 2)),
                                 ),
@@ -120,23 +120,18 @@ class _CartScreenState extends State<CartScreen> {
                                       icon: const Icon(
                                         Icons.add_circle_outline_rounded,
                                         color: Color(0xff462b9c),
+                                        size: 22,
                                       ),
-                                    ),
-                                    const SizedBox(
-                                      width: 7,
                                     ),
                                     GetBuilder<Cart>(
                                       builder: (controller) => Text(
                                         "${controller.cartitems[index].count}",
                                         style: const TextStyle(
                                           fontFamily: 'myfont',
-                                          fontSize: 22,
+                                          fontSize: 18,
                                           color: Color(0xff462b9c),
                                         ),
                                       ),
-                                    ),
-                                    const SizedBox(
-                                      width: 7,
                                     ),
                                     IconButton(
                                       onPressed: () {
@@ -146,6 +141,7 @@ class _CartScreenState extends State<CartScreen> {
                                       icon: const Icon(
                                         Icons.remove_circle_outline_rounded,
                                         color: Color(0xff462b9c),
+                                        size: 22,
                                       ),
                                     ),
                                   ],
@@ -154,12 +150,11 @@ class _CartScreenState extends State<CartScreen> {
                             ),
                           ),
                           const SizedBox(
-                            width: 50,
+                            width: 30,
                           ),
                           IconButton(
                             onPressed: () {
-                              controller
-                                  .remove(controller.cartitems[index]);
+                              controller.remove(controller.cartitems[index]);
                             },
                             icon: Icon(
                               Icons.delete_forever_rounded,
@@ -181,7 +176,7 @@ class _CartScreenState extends State<CartScreen> {
               "Order Instructions",
               style: TextStyle(
                 fontFamily: 'myfont',
-                fontSize: 18,
+                fontSize: 16,
               ),
             ),
             const SizedBox(
@@ -204,7 +199,7 @@ class _CartScreenState extends State<CartScreen> {
                   style: TextStyle(
                     fontFamily: 'myfont',
                     fontWeight: FontWeight.w500,
-                    fontSize: 25,
+                    fontSize: 23,
                   ),
                 ),
                 GetBuilder<Cart>(
@@ -212,7 +207,7 @@ class _CartScreenState extends State<CartScreen> {
                     " ${controller.totalprice}\$",
                     style: const TextStyle(
                         fontFamily: 'myfont',
-                        fontSize: 24,
+                        fontSize: 22,
                         fontWeight: FontWeight.w600,
                         color: Color.fromARGB(255, 216, 163, 2)),
                   ),
@@ -231,7 +226,7 @@ class _CartScreenState extends State<CartScreen> {
                 style: TextStyle(
                     fontFamily: 'myfont',
                     fontWeight: FontWeight.w500,
-                    fontSize: 23,
+                    fontSize: 20,
                     color: Colors.white),
               ),
               decoration: BoxDecoration(
@@ -254,7 +249,7 @@ class _CartScreenState extends State<CartScreen> {
                     "Back To Menu",
                     style: TextStyle(
                         fontFamily: 'myfont',
-                        fontSize: 18,
+                        fontSize: 15,
                         decoration: TextDecoration.underline),
                   ),
                 ),

@@ -15,7 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: const EdgeInsets.symmetric(vertical: 35),
+        padding: const EdgeInsets.symmetric(vertical: 40),
         width: double.infinity,
         height: double.infinity,
         decoration: const BoxDecoration(
@@ -50,14 +50,14 @@ class _SplashScreenState extends State<SplashScreen> {
                 "Get Started",
                 style: TextStyle(
                     fontFamily: "myfont",
-                    fontSize: 24,
+                    fontSize: 22,
                     color: Color(0xff644ab5),
                     fontWeight: FontWeight.w500),
               ),
               style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(Colors.white),
                   padding: MaterialStateProperty.all(
-                      const EdgeInsets.symmetric(vertical: 11, horizontal: 60)),
+                      const EdgeInsets.symmetric(vertical: 11, horizontal: 65)),
                   shape: MaterialStateProperty.all(RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(50)))),
             ),

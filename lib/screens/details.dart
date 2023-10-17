@@ -60,10 +60,10 @@ class _FoodDetailState extends State<FoodDetail> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             const SizedBox(
-              height: 50,
+              height: 40,
             ),
             Container(
-              padding: const EdgeInsets.only(left: 15),
+              padding: const EdgeInsets.only(left: 13),
               alignment: Alignment.centerLeft,
               child: IconButton(
                 onPressed: () {
@@ -77,19 +77,19 @@ class _FoodDetailState extends State<FoodDetail> {
               ),
             ),
             const SizedBox(
-              height: 30,
+              height: 20,
             ),
             Image.asset(
               widget.imageUrl,
-              width: 270,
+              width: 260,
             ),
             const SizedBox(
-              height: 55,
+              height: 35,
             ),
             Container(
               padding: const EdgeInsets.all(25),
               width: double.infinity,
-              height: 440,
+              height: 470,
               decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
@@ -105,7 +105,7 @@ class _FoodDetailState extends State<FoodDetail> {
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 7),
                         width: 105,
-                        height: 48,
+                        height: 45,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(50),
                           color: const Color(0xff462b9c),
@@ -115,7 +115,7 @@ class _FoodDetailState extends State<FoodDetail> {
                           children: [
                             Icon(
                               Icons.star,
-                              size: 28,
+                              size: 27,
                               color: Colors.amber,
                             ),
                             SizedBox(
@@ -125,7 +125,7 @@ class _FoodDetailState extends State<FoodDetail> {
                               "4.8",
                               style: TextStyle(
                                   fontFamily: 'myfont',
-                                  fontSize: 23,
+                                  fontSize: 20,
                                   color: Colors.white,
                                   fontWeight: FontWeight.w500),
                             )
@@ -136,7 +136,7 @@ class _FoodDetailState extends State<FoodDetail> {
                         " ${widget.price}\$",
                         style: const TextStyle(
                             fontFamily: 'myfont',
-                            fontSize: 28,
+                            fontSize: 25,
                             fontWeight: FontWeight.bold,
                             color: Color.fromARGB(255, 223, 170, 10)),
                       ),
@@ -159,17 +159,17 @@ class _FoodDetailState extends State<FoodDetail> {
                     "Big Juicy Beef Burger With Cheese, Lettuce, Tomato, Onion and Special Sauce!",
                     style: TextStyle(
                         fontFamily: 'myfont',
-                        fontSize: 16,
+                        fontSize: 14,
                         color: Colors.grey[600]),
                   ),
                   const SizedBox(
-                    height: 20,
+                    height: 15,
                   ),
                   const Text(
                     "Add Ons",
                     style: TextStyle(
                       fontFamily: 'myfont',
-                      fontSize: 22,
+                      fontSize: 20,
                     ),
                   ),
                   const SizedBox(
@@ -180,8 +180,8 @@ class _FoodDetailState extends State<FoodDetail> {
                     children: [
                       Container(
                           padding: const EdgeInsets.only(top: 12),
-                          width: 85,
-                          height: 88,
+                          width: 80,
+                          height: 80,
                           decoration: BoxDecoration(
                               color: const Color.fromARGB(186, 224, 224, 224),
                               borderRadius: BorderRadius.circular(18)),
@@ -190,7 +190,7 @@ class _FoodDetailState extends State<FoodDetail> {
                             children: [
                               Image.asset(
                                 "assets/images/cheese-3.png",
-                                width: 76,
+                                width: 66,
                               ),
                               Row(
                                 mainAxisAlignment:
@@ -224,8 +224,8 @@ class _FoodDetailState extends State<FoodDetail> {
                           )),
                       Container(
                           padding: const EdgeInsets.only(top: 10),
-                          width: 85,
-                          height: 88,
+                          width: 80,
+                          height: 80,
                           decoration: BoxDecoration(
                               color: const Color.fromARGB(186, 224, 224, 224),
                               borderRadius: BorderRadius.circular(18)),
@@ -234,7 +234,7 @@ class _FoodDetailState extends State<FoodDetail> {
                             children: [
                               Image.asset(
                                 "assets/images/green-lettuce.png",
-                                width: 65,
+                                width: 55,
                               ),
                               Row(
                                 mainAxisAlignment:
@@ -268,8 +268,8 @@ class _FoodDetailState extends State<FoodDetail> {
                           )),
                       Container(
                           padding: const EdgeInsets.only(top: 10),
-                          width: 85,
-                          height: 88,
+                          width: 80,
+                          height: 80,
                           decoration: BoxDecoration(
                               color: const Color.fromARGB(186, 224, 224, 224),
                               borderRadius: BorderRadius.circular(18)),
@@ -278,7 +278,7 @@ class _FoodDetailState extends State<FoodDetail> {
                             children: [
                               Image.asset(
                                 "assets/images/pepsi-12.png",
-                                height: 50,
+                                height: 40,
                               ),
                               Row(
                                 mainAxisAlignment:
@@ -312,8 +312,8 @@ class _FoodDetailState extends State<FoodDetail> {
                           )),
                       Container(
                           padding: const EdgeInsets.only(top: 10),
-                          width: 85,
-                          height: 88,
+                          width: 80,
+                          height: 80,
                           decoration: BoxDecoration(
                               color: const Color.fromARGB(186, 224, 224, 224),
                               borderRadius: BorderRadius.circular(18)),
@@ -322,7 +322,7 @@ class _FoodDetailState extends State<FoodDetail> {
                             children: [
                               Image.asset(
                                 "assets/images/fries-18.png",
-                                width: 78,
+                                width: 65,
                               ),
                               Row(
                                 mainAxisAlignment:
@@ -376,7 +376,7 @@ class _FoodDetailState extends State<FoodDetail> {
                         style: TextStyle(
                             fontFamily: 'myfont',
                             fontWeight: FontWeight.w500,
-                            fontSize: 23,
+                            fontSize: 20,
                             color: Colors.white),
                       ),
                       decoration: BoxDecoration(
